@@ -1,182 +1,48 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta http-equiv="Content-Style-Type" content="text/css">
-<meta http-equiv="Content-Script-Type" content="text/javascript">
-<title>앤팀 타이틀곡 소트</title>
-<script type="text/javascript">
-<!--
-//*********************************************************
-//
-// ?価するメンバ?の名前のリスト
-//
-// この部分を変更して下さい。名前の削除・追加も可?です。
-// 名前を引用符(")で括り、コン?(,)で区切って下さい。
-// 但し、リストの最後にはコン?を入れてはいけません。
-//
-//*********************************************************
-var namMember = new Array(
-
-"<img src=> <br>War Cry</br>",
-"<img src=> <br>Yukiakari</br>",
-"<img src=> <br>Under the skin</br>",
-"<img src=> <br>FIREWORK</br>",
-"<img src=> <br>Samidare</br>",
-"<img src=> <br>Aoarashi</br>",
-"<img src=> <br>Jyuugoya</br>",
-"<img src=> <br>Back to Life</br>",
-"<img src=> <br>Go in Blind</br>",
-
-
-);
-//*********************************************************
-
-var lstMember = new Array();
-var parent = new Array();
-var equal = new Array();
-var rec = new Array();
-var cmp1,cmp2;
-var head1,head2;
-var nrec;
-
-var numQuestion;
-var totalSize;
-var finishSize;
-var finishFlag;
-
-//変数の初期化+++++++++++++++++++++++++++++++++++++++++++++
-function initList(){
-var n = 0;
-var mid;
-var i;
-
-//??トすべき配列
-lstMember[n] = new Array();
-for (i=0; i<namMember.length; i++) {
-lstMember[n][i] = i;
-}
-parent[n] = -1;
-totalSize = 0;
-n++;
-
-for (i=0; i<lstMember.length; i++) {
-//要素数が２以上なら２分割し、
-//分割された配列をlstMemberの最後に加える
-if(lstMember[i].length>=2) {
-mid = Math.ceil(lstMember[i].length/2);
-lstMember[n] = new Array();
-lstMember[n] = lstMember[i].slice(0,mid);
-totalSize += lstMember[n].length;
-parent[n] = i;
-n++;
-lstMember[n] = new Array();
-lstMember[n] = lstMember[i].slice(mid,lstMember[i].length);
-totalSize += lstMember[n].length;
-parent[n] = i;
-n++;
-}
-}
-
-//保存用配列
-for (i=0; i<namMember.length; i++) {
-rec[i] = 0;
-}
-nrec = 0;
-
-//引き分けの結果を保存するリスト
-//キ?：リンク始?の値
-// 値 ：リンク終?の値
-for (i=0; i<=namMember.length; i++) {
-equal[i] = -1;
-}
-
-cmp1 = lstMember.length-2;
-cmp2 = lstMember.length-1;
-head1 = 0;
-head2 = 0;
-numQuestion = 1;
-finishSize = 0;
-finishFlag = 0;
-}
-
-//リストの??ト+++++++++++++++++++++++++++++++++++++++++++
-//flag：比較結果
-//  -1：左を選択
-//   0：引き分け
-//   1：右を選択
-function sortList(flag){
-var i;
-var str;
-
-//recに保存
-if (flag<0) {
-rec[nrec] = lstMember[cmp1][head1];
-head1++;
-nrec++;
-finishSize++;
-while (equal[rec[nrec-1]]!=-1) {
-rec[nrec] = lstMember[cmp1][head1];
-head1++;
-nrec++;
-finishSize++;
-}
-}
-else if (flag>0) {
-rec[nrec] = lstMember[cmp2][head2];
-head2++;
-nrec++;
-finishSize++;
-while (equal[rec[nrec-1]]!=-1) {
-rec[nrec] = lstMember[cmp2][head2];
-head2++;
-nrec++;
-finishSize++;
-}
-}
-else {
-rec[nrec] = lstMember[cmp1][head1];
-head1++;
-nrec++;
-finishSize++;
-while (equal[rec[nrec-1]]!=-1) {
-rec[nrec] = lstMember[cmp1][head1];
-head1++;
-nrec++;
-finishSize++;
-}
-equal[rec[nrec-1]] = lstMember[cmp2][head2];
-rec[nrec] = lstMember[cmp2][head2];
-head2++;
-nrec++;
-finishSize++;
-while (equal[rec[nrec-1]]!=-1) {
-rec[nrec] = lstMember[cmp2][head2];
-head2++;
-nrec++;
-finishSize++;
-}
-}
-
-//片方のリストを走査し終えた後の処理
-if (head1<lstMember[cmp1].length && head2==lstMember[cmp2].length) {
-//リストcmp2が走査済 - リストcmp1の残りをコピ?
-while (head1<lstMember[cmp1].length){
-rec[nrec] = lstMember[cmp1][head1];
-head1++;
-nrec++;
-finishSize++;
-}
-}
-else if (head1==lstMember[cmp1].length && head2<lstMember[cmp2].length) {
-//リストcmp1が走査済 - リストcmp2の残りをコピ?
-while (head2<lstMember[cmp2].length){
-rec[nrec] = lstMember[cmp2][head2];
-head2++;
-nrec++;
-finishSize++;
-}
-}
-
-//両方のリストの最後に到達した場合は
-//親リストを更新する
-if (head1==lstMember[cmp1].length && hea
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <title>앤팀 타이틀곡 소트</title>
+    <script type="text/javascript">
+        // JavaScript 코드 (위에서 설명한 코드와 동일)
+    </script>
+    <style type="text/css">
+        /* CSS 스타일 (위와 동일) */
+    </style>
+</head>
+<body>
+    <table id="mainTable" align="center">
+        <tr>
+            <td id="battleNumber" colspan="3" style="padding-bottom: 10px;">
+                <p>&nbsp;</p>
+            </td>
+        </tr>
+        <tr>
+            <td id="leftField" onClick="if(finishFlag==0)sortList(-1);" rowspan="2">
+                <img src="images/warcry.jpg" alt="War Cry" />
+            </td>
+            <td class="middleField" onClick="if(finishFlag==0)sortList(0);">
+                둘 다 좋다
+            </td>
+            <td id="rightField" onClick="if(finishFlag==0)sortList(1);" rowspan="2">
+                <img src="images/yukiakari.jpg" alt="Yukiakari" />
+            </td>
+        </tr>
+        <tr>
+            <td class="middleField" onClick="if(finishFlag==0)sortList(0);">
+                모르겠다
+            </td>
+        </tr>
+    </table>
+    <br><br>
+    <div id="resultField" style="text-align:center;">
+        <p><font size="2" face="돋움"><span style="">ML님 블로그 참고했습니당:) </font></p>
+    </div>
+    <script type="text/javascript">
+        // initList() 및 showImage() 함수 실행
+        initList();
+        showImage();
+    </script>
+</body>
+</html>
